@@ -1,6 +1,5 @@
 "use client"
 import { storage } from '@/lib/firebase';
-import { prisma } from '@/lib/prisma';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -51,7 +50,6 @@ export default function PostPhoto() {
             // Get the download URL
             const downloadURL = await getDownloadURL(storageRef);
             console.log(downloadURL)
-            const post = await prisma.post.create()
             return;
         } catch (error) {
             console.error(error);
