@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function SignIn() {
     const { user } = useSelector((state) => state.user);
-    console.log(user)
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const dispatch = useDispatch()
