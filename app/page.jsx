@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { CalendarIcon, MapPinIcon, HeartIcon } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
-import { loadUserFromLocalStorage } from "@/redux/userSlice";
 import { useDispatch } from "react-redux";
 
 export default function WeddingLandingPage() {
@@ -11,10 +10,11 @@ export default function WeddingLandingPage() {
 	const [hours, setHours] = useState(0);
 	const [minutes, setMinutes] = useState(0);
 	const [seconds, setSeconds] = useState(0);
+	const avatar =
+		"https://images.pexels.com/photos/28105141/pexels-photo-28105141/free-photo-of-the-bride-and-groom-embracing-in-a-park.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
 
 	const dispatch = useDispatch();
 	useEffect(() => {
-		// loadUserFromLocalStorage(dispatch);
 		const weddingDate = new Date("2024-12-21T16:00:00").getTime();
 
 		const timer = setInterval(() => {
@@ -43,19 +43,21 @@ export default function WeddingLandingPage() {
 
 	return (
 		<div className="min-h-screen bg-orange-50">
-			<Navbar />
 			{/* Hero Section */}
 			<section className="relative h-screen flex items-center justify-center text-center text-white">
-				{/* <Image
-					width={800}
+				<Image
+					width={1000}
 					height={800}
-					src={user?.image || avatar}
-					className="absolute inset-0 bg-cover bg-center z-0"
-				/> */}
-				<div className="absolute inset-0 bg-orange-900 opacity-60 z-10"></div>
+					src={avatar}
+					className="h-screen absolute mx-auto inset-0 bg-cover bg-center z-0"
+				/>
+				<div className="absolute inset-0 bg-black opacity-80 z-10"></div>
 				<div className="relative z-20">
-					<h1 className="text-5xl md:text-7xl font-bold mb-4">Sarah & John</h1>
-					<p className="text-xl md:text-2xl">We're getting married!</p>
+					<h3 className="text-3xl md:text-5xl font-semibold mb-4">AW2024</h3>
+					<h1 className="text-5xl md:text-7xl font-bold p-6">
+						Andrea & Wisdom
+					</h1>
+					<p className="text-xl md:text-2xl">We're getting married! 🥳😍</p>
 				</div>
 			</section>
 
@@ -221,12 +223,12 @@ export default function WeddingLandingPage() {
 			<footer className="bg-orange-800 text-white py-8">
 				<div className="container mx-auto px-4 text-center">
 					<p>
-						&copy; {new Date().getFullYear()} Sarah & John's Wedding. All rights
-						reserved.
+						&copy; {new Date().getFullYear()} Andrea & Wisdom's Wedding. All
+						rights reserved.
 					</p>
 					<div className="mt-4 flex justify-center space-x-4">
 						<a
-							href="#"
+							href="https://www.facebook.com"
 							className="text-orange-200 hover:text-white transition duration-300"
 						>
 							<svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -234,7 +236,7 @@ export default function WeddingLandingPage() {
 							</svg>
 						</a>
 						<a
-							href="#"
+							href="https://www.instagram.com"
 							className="text-orange-200 hover:text-white transition duration-300"
 						>
 							<svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">

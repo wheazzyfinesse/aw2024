@@ -42,7 +42,8 @@ export default function Navbar() {
 						</Link>
 					</div>
 					<div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-						<NavLink href="/gallery">Post Photos</NavLink>
+						{user && <NavLink href="/post">Make a post</NavLink>}
+						<NavLink href="/gallery">Gallery</NavLink>
 						<NavLink href="/gifts">Send Gifts</NavLink>
 						<NavLink href="/messages">Message the Couple</NavLink>
 						<NavLink href="/events">Events</NavLink>
