@@ -78,11 +78,17 @@ export default function SignUp() {
 	}, [user, router]);
 
 	return (
-		<div className="max-w-md space-x-4 flex flex-col mx-auto justify-center h-screen">
+		<div className="max-w-md flex flex-col mx-auto px-4 ">
 			<h1 className="text-2xl text-center my-5">Sign up</h1>
 			<form onSubmit={handleSubmit} className="space-y-4 ">
-				<div className="flex items-center gap-4 justify-center">
-					<Image src={preview || avatar} height={100} width={100} alt="image" />
+				<div className="flex flex-col items-center gap-4 justify-center">
+					<Image
+						src={preview || avatar}
+						height={150}
+						width={150}
+						alt="image"
+						className="rounded-full"
+					/>
 					<div className="flex">
 						<label
 							htmlFor="file"
@@ -135,7 +141,7 @@ export default function SignUp() {
 				<FcGoogle size={24} />
 				Sign Up with Google
 			</button>
-			<div className="flex justify-end items-center p-2 gap-2 ">
+			<div className="flex justify-center items-center pt-4 gap-2 ">
 				Already have an account?
 				<Link href="/signin" className="hover:underline text-purple-900">
 					Sign in

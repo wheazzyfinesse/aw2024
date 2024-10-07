@@ -3,18 +3,29 @@ import { useState, useEffect } from "react";
 import { CalendarIcon, MapPinIcon, HeartIcon } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setCredentials } from "@/redux/userSlice";
 
 export default function WeddingLandingPage() {
 	const [days, setDays] = useState(0);
 	const [hours, setHours] = useState(0);
 	const [minutes, setMinutes] = useState(0);
 	const [seconds, setSeconds] = useState(0);
+	const { user } = useSelector((state) => state.user);
 	const avatar =
 		"https://images.pexels.com/photos/28105141/pexels-photo-28105141/free-photo-of-the-bride-and-groom-embracing-in-a-park.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
 
 	const dispatch = useDispatch();
 	useEffect(() => {
+		// if (!user) {
+		// 	window.location.href = "/signin";
+		// }
+		const user = localStorage.getItem("user");
+		if (user) {
+			dispatch(setCredentials(JSON.parse(user)));
+		}
+
+		// loadUserFromLocalStorage(dispatch);
 		const weddingDate = new Date("2024-12-21T16:00:00").getTime();
 
 		const timer = setInterval(() => {
@@ -44,20 +55,29 @@ export default function WeddingLandingPage() {
 	return (
 		<div className="min-h-screen bg-orange-50">
 			{/* Hero Section */}
-			<section className="relative h-screen flex items-center justify-center text-center text-white">
+			<section className="relative  flex bg-contain text-center items-center justify-center text-white">
 				<Image
 					width={1000}
 					height={800}
 					src={avatar}
-					className="h-screen absolute mx-auto inset-0 bg-cover bg-center z-0"
+					alt="image"
+					className=" inset-0 bg-cover z-0"
 				/>
-				<div className="absolute inset-0 bg-black opacity-80 z-10"></div>
-				<div className="relative z-20">
-					<h3 className="text-3xl md:text-5xl font-semibold mb-4">AW2024</h3>
-					<h1 className="text-5xl md:text-7xl font-bold p-6">
-						Andrea & Wisdom
-					</h1>
-					<p className="text-xl md:text-2xl">We're getting married! 🥳😍</p>
+
+				<div className="absolute inset-0 bg-black opacity-80 pt-6 last:z-10">
+					<div className="relative z-20">
+						<h3 className="text-2xl md:text-5xl font-semibold mb-4 text-orange-600">
+							AW2024
+						</h3>
+						<h1 className="text-5xl md:text-7xl font-bold p-6">
+							Andrea
+							<br />
+							<span className="text-orange-600">&</span>
+							<br />
+							Wisdom
+						</h1>
+						<p className="text-xl md:text-2xl">We're getting married! 🥳😍</p>
+					</div>
 				</div>
 			</section>
 

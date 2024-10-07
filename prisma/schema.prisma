@@ -13,19 +13,33 @@ model User {
   name      String
   password  String
   image     String
-  createdAt DateTime  @default(now())
   posts     Post[]
   gifts     Gift[]
   messages  Message[]
+  comments  Comment[]
+  createdAt DateTime  @default(now())
 }
 
 model Post {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String          @id @default(auto()) @map("_id") @db.ObjectId
   imageUrl  String
-  isPublic  Boolean  @default(true)
+  post      String?
+  isPrivate Boolean         @default(false)
+  location  WeddingLocation
+  userId    String          @db.ObjectId
+  User      User            @relation(fields: [userId], references: [id])
+  comment   Comment[]       @relation("PostComments")
+  createdAt DateTime        @default(now())
+}
+
+model Comment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  content   String
   userId    String   @db.ObjectId
-  createdAt DateTime @default(now())
   User      User     @relation(fields: [userId], references: [id])
+  postId    String   @db.ObjectId
+  Post      Post     @relation("PostComments", fields: [postId], references: [id])
+  createdAt DateTime @default(now())
 }
 
 model Gift {
@@ -33,14 +47,21 @@ model Gift {
   amount    Float
   message   String
   userId    String   @db.ObjectId
-  createdAt DateTime @default(now())
   User      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
 }
 
 model Message {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   content   String
   userId    String   @db.ObjectId
-  createdAt DateTime @default(now())
   User      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+enum WeddingLocation {
+  RECEPTION
+  AFTERPARTY
+  BRIDAL_SHOWER
+  CEREMONY
 }

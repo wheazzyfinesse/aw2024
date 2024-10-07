@@ -25,7 +25,7 @@ export const loadUserFromLocalStorage = (dispatch) => {
     if (typeof window !== 'undefined') {
         const user = localStorage.getItem('user');
         if (user) {
-            dispatch(setCredentials(JSON.parse(user)));
+            return dispatch(setCredentials(JSON.parse(user)));
         } else {
             return
         }
