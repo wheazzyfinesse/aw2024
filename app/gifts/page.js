@@ -34,14 +34,14 @@ export default function GiftPage() {
 
     const onSuccess = (reference) => {
         console.log('Payment successful. Reference:', reference)
-        alert('Thank you for your gift! Your payment was successful.')
+        console.log('Thank you for your gift! Your payment was successful.')
         // Here you would typically update your backend
 
         resetForm()
     }
 
     const onClose = () => {
-        alert('Payment cancelled. Please try again.')
+        console.log('Payment cancelled. Please try again.')
     }
 
     const handleSubmit = (e) => {
@@ -50,7 +50,7 @@ export default function GiftPage() {
 
         e.preventDefault()
         if (!selectedGift || !amount || !name || !email) {
-            alert('Please fill in all required fields')
+            console.log('Please fill in all required fields')
             return
         }
         initializePayment(onSuccess, onClose)
