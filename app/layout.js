@@ -23,8 +23,8 @@ export default function RootLayout({ children }) {
         className={inter.className}
       >
         <AuthProvider>
-          <Navbar />
           <LoadUser />
+          <Navbar />
           {children}
           <Toaster />
         </AuthProvider>
