@@ -39,6 +39,7 @@ export default function SendMessage() {
                                     type="text"
                                     id="name"
                                     value={user?.name}
+                                    readOnly
                                     className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500`}
                                 />
                             </div>
@@ -51,6 +52,7 @@ export default function SendMessage() {
                                     type="email"
                                     id="email"
                                     value={user?.email}
+                                    readOnly
                                     className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 `}
                                 />
                             </div>
