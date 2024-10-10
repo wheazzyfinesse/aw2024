@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { usePaystackPayment } from 'react-paystack'
 import { CreditCard, Gift, DollarSign } from 'lucide-react'
 import { useDispatch, useSelector } from 'react-redux'
+import { setCredentials } from '@/redux/userSlice'
 
 const giftOptions = [
     { id: 1, name: 'Honeymoon Fund', description: 'Contribute to our dream honeymoon' },
@@ -57,19 +58,19 @@ export default function GiftPage() {
     }
 
 
-    useEffect(() => {
-        // Ensure this runs only on the client side
-        if (typeof window !== "undefined") {
-            const user = localStorage.getItem("user");
-            if (user) {
-                try {
-                    dispatch(setCredentials(JSON.parse(user)));
-                } catch (error) {
-                    console.error("Error parsing user data from localStorage:", error);
-                }
-            }
-        }
-    }, [dispatch]);
+    // useEffect(() => {
+    //     // Ensure this runs only on the client side
+    //     if (typeof window !== "undefined") {
+    //         const user = localStorage.getItem("user");
+    //         if (user) {
+    //             try {
+    //                 dispatch(setCredentials(JSON.parse(user)));
+    //             } catch (error) {
+    //                 console.error("Error parsing user data from localStorage:", error);
+    //             }
+    //         }
+    //     }
+    // }, [dispatch]);
 
     return (
         <div className="min-h-screen bg-orange-50 py-12 px-4 sm:px-6 lg:px-8">

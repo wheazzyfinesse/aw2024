@@ -1,3 +1,4 @@
+"use client"
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/components/Providers";
@@ -10,10 +11,10 @@ const inter = Inter({
   subsets: ["latin"]
 });
 
-export const metadata = {
-  title: "AW2024",
-  description: "A celebration of love | A & W",
-};
+// export const metadata = {
+//   title: "AW2024",
+//   description: "A celebration of love | A & W",
+// };
 
 export default function RootLayout({ children }) {
 
