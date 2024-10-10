@@ -49,25 +49,31 @@ export default function SignUp() {
 		const provider = new GoogleAuthProvider();
 
 		setLoading(true);
-		const result = await signInWithPopup(auth, provider);
-		console.log(result.user.email);
-		if (result) {
-			const user = await googleSignupHandler({
-				image: result.user.photoURL,
-				email: result.user.email,
-				name: result.user.displayName,
-				provider: result.user.providerData[0].providerId,
-			});
-			// Handle the response
-			if (user.error) {
-				toast.error(user.error);
-				setLoading(false);
-			} else {
-				toast.success("User created successfully using google!");
-				dispatch(setCredentials(user.user));
-				setLoading(false);
-				router.replace("/");
+		try {
+			const result = await signInWithPopup(auth, provider);
+			console.log(result.user.email);
+			if (result) {
+				const user = await googleSignupHandler({
+					image: result.user.photoURL,
+					email: result.user.email,
+					name: result.user.displayName,
+					provider: result.user.providerData[0].providerId,
+				});
+				// Handle the response
+				if (user.error) {
+					toast.error(user.error);
+					setLoading(false);
+				} else {
+					toast.success("User created successfully using google!");
+					dispatch(setCredentials(user.user));
+					setLoading(false);
+					router.replace("/");
+				}
 			}
+		} catch (error) {
+			if (error.code === "auth/popup-closed-by-user")
+				toast.error("sign up with google was cancelled");
+			setLoading(false);
 		}
 	};
 	useEffect(() => {

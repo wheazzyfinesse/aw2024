@@ -51,19 +51,25 @@ export default function SignIn() {
 
 		setLoading(true);
 
-		const result = await signInWithPopup(auth, provider);
-		if (result) {
-			const user = await googleSigninHandler(result.user.email);
-			if (user.error) {
-				toast.error(user.error);
-				setLoading(false);
-			} else {
-				toast.success(`Nice to see you ${result.user.displayName}!`);
-				dispatch(setCredentials(user.user));
+		try {
+			const result = await signInWithPopup(auth, provider);
+			if (result) {
+				const user = await googleSigninHandler(result.user.email);
+				if (user.error) {
+					toast.error(user.error);
+					setLoading(false);
+				} else {
+					toast.success(`Nice to see you ${result.user.displayName}!`);
+					dispatch(setCredentials(user.user));
 
-				setLoading(false);
-				router.replace("/");
+					setLoading(false);
+					router.replace("/");
+				}
 			}
+		} catch (error) {
+			console.log(error.code);
+			if (error.code === "auth/popup-closed-by-user")
+				toast.error("sign in with google was cancelled");
 		}
 	};
 

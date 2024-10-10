@@ -25,7 +25,7 @@ export default function PostPhotos() {
 		const userId = user?.id;
 		isPrivate = isPrivate === "on" ? true : false;
 
-		if (!post || !isPrivate || !location || !userId) {
+		if (!post || !location || !userId) {
 			alert("All fields are required.");
 			return;
 		}
@@ -115,28 +115,26 @@ export default function PostPhotos() {
 									NB: Just for you and the couple
 								</span>
 							</div>
-							<div className="mb-4 flex items-center gap-2">
+							<div className="mb-4 flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-2">
 								<label className="flex items-center gap-1">
 									<input type="radio" name="location" value="RECEPTION" />
 									Reception
 								</label>
-								<br />
 
 								<label className="flex items-center gap-1">
 									<input type="radio" name="location" value="AFTERPARTY" />
 									Afterparty
 								</label>
-								<br />
+
 								<label className="flex items-center gap-1">
 									<input type="radio" name="location" value="BRIDAL_SHOWER" />
 									Bridal Shower
 								</label>
-								<br />
+
 								<label className="flex items-center gap-1">
 									<input type="radio" name="location" value="CEREMONY" />
 									Ceremony
 								</label>
-								<br />
 							</div>
 
 							<div className="flex items-center justify-between">

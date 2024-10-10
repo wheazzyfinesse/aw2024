@@ -3,6 +3,7 @@ import "./globals.css";
 import { AuthProvider } from "@/components/Providers";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
+import LoadUser from "@/lib/loadUser";
 
 
 const inter = Inter({
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
       >
         <AuthProvider>
           <Navbar />
+          <LoadUser />
           {children}
           <Toaster />
         </AuthProvider>
